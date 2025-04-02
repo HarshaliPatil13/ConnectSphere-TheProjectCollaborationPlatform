@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Invitation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+    <nav class="flex justify-between items-center p-4 bg-gray-900 border-b border-gray-700">
+        <div class="flex space-x-4">
+            <a href="#" class="text-white hover:underline">Project Management</a>
+            <a href="#" class="text-white hover:underline">New Project</a>
+            <a href="Pricing.html" class="text-white hover:underline">Upgrade</a>
+        </div>
+        <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center">
+                <i class="fas fa-user text-white"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex-grow flex items-center justify-center">
+        <div class="text-center">
+            <p class="mb-4">You are invited to join the project <span id="projectName"></span></p>
+            <form action="/invitations/respond" method="post">
+                <input type="hidden" name="invitationId" id="invitationId">
+                <button type="submit" name="response" value="Accepted" class="px-4 py-2 bg-green-500 text-white rounded">Accept Invitation</button>
+                <button type="submit" name="response" value="Declined" class="px-4 py-2 bg-red-500 text-white rounded">Decline</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

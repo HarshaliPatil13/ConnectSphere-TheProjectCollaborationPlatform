@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 60%;
+            margin: auto;
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .task-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .task-box {
+            width: 30%;
+            background: #333;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .issue {
+            background: #444;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .overlay, .popup {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .popup {
+            background: #2a2a2a;
+            width: 30%;
+            padding: 20px;
+            border-radius: 10px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Project Details</h2>
+    <p><strong>Project Name:</strong> <span th:text="${project.name}"></span></p>
+    <p><strong>Description:</strong> <span th:text="${project.description}"></span></p>
+
+    <h3>Invite Member</h3>
+    <form th:action="@{/leader/invite}" method="post">
+        <input type="hidden" name="projectId" th:value="${project.id}">
+        <label for="email">Enter Member Email:</label>
+        <input type="email" id="email" name="email" required>
+        <button type="submit">Send Invitation</button>
+    </form>
+</div>
+
+<div class="task-container">
+    <div class="task-box">
+        <h3>To-Do</h3>
+        <button onclick="openPopup('To-Do')">+ Create Issue</button>
+        <div th:each="task : ${tasks}" th:if="${task.status eq 'To-Do'}" class="issue">
+            <strong th:text="${task.title}"></strong>
+            <p th:text="${task.description}"></p>
+        </div>
+    </div>
+
+    <div class="task-box">
+        <h3>In Progress</h3>
+        <button onclick="openPopup('In Progress')">+ Create Issue</button>
+        <div th:each="task : ${tasks}" th:if="${task.status eq 'In Progress'}" class="issue">
+            <strong th:text="${task.title}"></strong>
+            <p th:text="${task.description}"></p>
+        </div>
+    </div>
+    
+    <div class="task-box">
+        <h3>Done</h3>
+        <button onclick="openPopup('Done')">+ Create Issue</button>
+        <div th:each="task : ${tasks}" th:if="${task.status eq 'Done'}" class="issue">
+            <strong th:text="${task.title}"></strong>
+            <p th:text="${task.description}"></p>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="closePopup()"></div>
+<div class="popup" id="popup">
+    <h3>Create New Issue</h3>
+    <form th:action="@{/leader/tasks/create}" method="post">
+        <input type="text" name="title" placeholder="What needs to be done?" required>
+        <textarea name="description" placeholder="Describe your task..." required></textarea>
+        <input type="hidden" name="status" id="status">
+        <div class="popup-buttons">
+            <button type="button" onclick="closePopup()">Cancel</button>
+            <button type="submit">Create Issue</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    function openPopup(status) {
+        document.getElementById("status").value = status;
+        document.getElementById("popup").style.display = "block";
+        document.getElementById("overlay").style.display = "block";
+    }
+    function closePopup() {
+        document.getElementById("popup").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #7cfc00;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: radial-gradient(circle, #002200, #000000);
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            border: 2px solid #7cfc00;
+            border-radius: 10px;
+            background: linear-gradient(145deg, #003300, #000000);
+            box-shadow: 0 0 10px #7cfc00;
+        }
+        h1 {
+            text-shadow: 0 0 5px #7cfc00;
+        }
+        .input-box {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #7cfc00;
+            background: #000;
+            color: #7cfc00;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(145deg, #7cfc00, #228b22);
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 0 10px #7cfc00;
+        }
+        .btn:hover {
+            background: linear-gradient(145deg, #66c266, #1e661e);
+            box-shadow: 0 0 15px #7cfc00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form action="/member/login" method="post">
+            <input type="email" class="input-box" name="email" placeholder="Email" required>
+            <input type="password" class="input-box" name="password" placeholder="Password" required>
+            <button type="submit" class="btn">Login</button>
+             <p>Don't have an account? 
+            <a href="/member/register" style="color: #7cfc00;">Register here</a>
+        </p>
+        </form>
+    </div>
+</body>
+</html>

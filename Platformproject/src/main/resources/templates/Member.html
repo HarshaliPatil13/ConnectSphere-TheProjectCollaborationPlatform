@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Page</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #0f0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: radial-gradient(circle, #002200, #000000);
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid #0f0;
+            border-radius: 10px;
+            background: linear-gradient(145deg, #003300, #000000);
+            box-shadow: 0 0 20px #0f0;
+        }
+        h1 {
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #0f0;
+        }
+        p {
+            font-style: italic;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px #0f0;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background: linear-gradient(145deg, #00ff00, #009900);
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 0 10px #0f0;
+        }
+        .btn:hover {
+            background: linear-gradient(145deg, #00cc00, #007700);
+            box-shadow: 0 0 20px #0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome Member!</h1>
+        <p>"Great projects are built by great teams. Every member is a pillar of success."</p>
+        <button class="btn" onclick="window.location.href='/member/register'">Register</button>
+        <button class="btn" onclick="window.location.href='/member/login'">Login</button>
+    </div>
+</body>
+</html>
